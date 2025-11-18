@@ -1,0 +1,445 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: white;
+  color: #333;
+}
+
+/* HEADER */
+header {
+  background-color: #6a1b9a;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  position: relative;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.back-button {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  cursor: pointer;
+  display: none;
+}
+
+/* PAGES */
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+/* keep generic button styles used across the forum */
+.btn {
+  background-color: #6a1b9a;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #4a136b;
+}
+
+.btn.small {
+  padding: 8px 15px;
+  font-size: 0.9em;
+}
+
+/* MENU */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.menu-item {
+  background-color: #e0e0e0;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+  background-color: #cccccc;
+}
+
+/* TOGGLE / MESSAGE */
+.toggle {
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.toggle-link {
+  color: #6a1b9a;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.message {
+  text-align: center;
+  color: red;
+  font-size: 0.85em;
+  height: 1.2em;
+}
+
+/* FOOTER */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  font-size: 0.8em;
+  padding: 10px 0;
+}
+
+/* Forum styles */
+.forum-container {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.forum-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.forum-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+  text-align: left;
+}
+
+.new-post-btn {
+  background: #6b46c1; /* purple */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.forum-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.tag {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* individual tag colours (renamed to tag-1 .. tag-5) */
+.tag-1 { background: #ff6b6b; }   /* Tag 1 (red) */
+.tag-2 { background: #4db6ac; }   /* Tag 2 (teal) */
+.tag-3 { background: #ffb74d; }   /* Tag 3 (orange) */
+.tag-4 { background: #7e57c2; }   /* Tag 4 (purple) */
+.tag-5 { background: #64b5f6; }   /* Tag 5 (blue) */
+
+/* Selected tags and showing box */
+.selected-tags-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 0 6px;
+  gap: 12px;
+}
+
+.selected-tags-left .selected-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #222;
+}
+
+.selected-tags-right {
+  margin-left: auto;
+}
+
+.showing-box {
+  background: #f2f2f2;
+  color: #444;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logic-btn {
+  background: transparent;
+  border: 1px solid #d0d0d0;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+/* container for selected tags */
+.selected-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+/* small visual difference for selected tags */
+.selected-tag {
+  position: relative;
+  padding: 6px 12px;
+  transition: padding-right 140ms ease;
+  outline: 2px solid rgba(0,0,0,0.06);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  cursor: pointer;
+}
+
+/* hover "x" on selected tags (right-side, vertically-centred) */
+.selected-tag::after {
+  content: "Ã—";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.96);
+  color: rgba(255,255,255,0.95);
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.12);
+  opacity: 0;
+  transition: opacity 120ms ease, transform 120ms ease;
+  pointer-events: none;
+}
+
+.selected-tag:hover {
+  padding-right: 28px;
+}
+
+.selected-tag:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+/* ensure master tags look clickable */
+.forum-tags .tag { cursor: pointer; }
+
+/* Posts list */
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* post card */
+.post-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  box-sizing: border-box;
+}
+
+/* Title inside card */
+.post-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  text-align: left;
+}
+
+/* tags inside card (max 3 shown in markup) */
+.post-tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+/* Increase spacing below post-tags on detail page to avoid overlap and align replies */
+.post-tags-top {
+  display: flex;
+  justify-content: space-between; /* put replies to the right */
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px; /* slightly more spacing to avoid overlap */
+  flex-wrap: nowrap;
+}
+
+.post-tags-top .tags-left {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* replies in the top row (right side) */
+.post-replies {
+  color: #9e9e9e;    /* light grey */
+  font-size: 0.85rem;/* slightly smaller */
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* top date/time (header area) lighter and smaller */
+.post-date-top {
+  color: #9e9e9e;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Forum post meta (date at left, replies right-aligned) */
+.posts .post-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #9e9e9e;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+.posts .post-meta .post-date {
+  text-align: left;
+}
+
+.posts .post-meta .post-replies {
+  text-align: right;
+}
+
+/* Increase spacing below post-tags on detail page to avoid overlap */
+.post-tags-top {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Separator line used where the post box used to be */
+.detail-sep {
+  border: none;
+  height: 1px;
+  background-color: #e0e0e0; /* same colour as previous .post-card border */
+  margin: 12px 0;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Remove visual "box" for the detail page content while keeping layout spacing */
+#postDetailPage .post-card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Poster name styling inside the content area */
+.post-poster {
+  color: #9e9e9e; /* match post-date colour */
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* ensure the full-content keeps comfortable spacing from top line */
+#postDetailPage .post-full-content {
+  padding-top: 4px;
+}
+
+/* ensure separators align with forum-container padding on small screens */
+@media (max-width: 520px) {
+  .forum-container { padding: 0 12px; }
+  .forum-title { font-size: 1.25rem; }
+  .new-post-btn { padding: 6px 10px; font-size: 0.9rem; }
+  .detail-sep { margin: 10px 12px; }
+}
+
+/* Replies list styling: line separators and indentation pattern */
+.replies {
+  margin-top: 18px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reply {
+  border-top: 1px solid #e0e0e0; /* line between replies */
+  padding-top: 12px;
+  margin-top: 12px;
+  padding-left: 12px;           /* base indent */
+}
+
+.reply:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* every third reply gets extra indent */
+.replies .reply:nth-child(3n) {
+  padding-left: 24px;
+}
+
+/* reply text */
+.reply p {
+  margin: 0;
+  color: #333;
+  line-height: 1.35;
+}
+
+/* ensure spacing from the top separator */
+.detail-sep + .posts .replies { margin-top: 10px; }
+
+/* responsive tweak */
+@media (max-width: 520px) {
+  .reply { padding-left: 10px; }
+  .replies .reply:nth-child(3n) { padding-left: 18px; }
+}

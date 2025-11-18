@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search | UQCourseMate</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f8f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .phone {
+      width: 360px;
+      background-color: white;
+      border-radius: 40px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    .header {
+      background-color: #7A3FFF;
+      color: white;
+      text-align: center;
+      padding: 25px 0;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background-color: #f1f1f1;
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 25px;
+    }
+
+    .search-box input {
+      border: none;
+      background: none;
+      flex: 1;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .section-title {
+      color: #555;
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .course-btn {
+      background-color: #EAEAEA;
+      border-radius: 12px;
+      padding: 12px 0;
+      text-align: center;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .course-btn:hover {
+      background-color: #d8d8d8;
+    }
+
+    .footer {
+      text-align: center;
+      color: #999;
+      font-size: 12px;
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <div class="header">Search</div>
+    <div class="content">
+      <div class="search-box">
+        <input id="searchInput" type="text" placeholder="Search..." />
+        <span id="clearBtn">✖️</span>
+    </div>
+
+      <div class="section-title">You may be interested in ...</div>
+      <div class="button-grid">
+        <div class="course-btn">CHEM1100</div>
+        <div class="course-btn">CSSE1001</div>
+        <div class="course-btn">BIOL1040</div>
+        <div class="course-btn">COMP2048</div>
+      </div>
+
+      <div class="section-title">Peers are searching...</div>
+      <div class="button-grid">
+        <div class="course-btn">INFS1200</div>
+        <div class="course-btn">PHIL1002</div>
+        <div class="course-btn">EDUC1650</div>
+        <div class="course-btn">DECO1400</div>
+      </div>
+    </div>
+    <div class="footer">© UQCourseMate. All rights reserved.</div>
+  </div>
+
+
+<script>
+  const input   = document.getElementById('searchInput');
+  const clear   = document.getElementById('clearBtn');
+  const empty   = document.getElementById('emptyState'); 
+  const buttons = Array.from(document.querySelectorAll('.course-btn'));
+
+  
+  const norm = s => (s || '').toLowerCase().replace(/\s+/g, '');
+
+  
+  function applyFilter() {
+    const q = norm(input.value);
+    let shown = 0;
+
+    buttons.forEach(btn => {
+      
+      const haystack = norm(btn.textContent + ' ' + (btn.dataset.tags || ''));
+      const match = q === '' || haystack.includes(q);
+      btn.style.display = match ? '' : 'none';
+      if (match) shown++;
+    });
+
+    if (empty) empty.style.display = (q && shown === 0) ? 'block' : 'none';
+  }
+
+  
+  let t = null;
+  input.addEventListener('input', () => {
+    clearTimeout(t);
+    t = setTimeout(applyFilter, 80);
+  });
+
+  clear.addEventListener('click', () => {
+    input.value = '';
+    applyFilter();
+    input.focus();
+  });
+
+  
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const q = norm(input.value);
+      if (!q) return;
+      
+      const firstVisible = buttons.find(b => b.style.display !== 'none');
+      if (firstVisible) {
+        const course = firstVisible.textContent.trim();
+        
+        alert(`Opening ${course} page (MVP placeholder)`);
+      } else {
+        if (empty) alert('No courses found.');
+      }
+    }
+  });
+
+  
+  applyFilter();
+
+  
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const course = btn.textContent.trim();
+      alert(`Opening ${course} page (MVP placeholder)`);
+      
+    });
+  });
+</script>
+</body>
+</html>

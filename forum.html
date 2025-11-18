@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Forum</title>
+  <link rel="stylesheet" href="css/forum.css" />
+</head>
+<body>
+  <header>
+    <button id="backButton" class="back-button" aria-label="Back">&larr;</button>
+    <div id="pageTitle">Forum</div>
+    <button id="logoutBtn" class="back-button" style="right:15px; left:auto;">Log out</button>
+  </header>
+
+  <main>
+    <!-- Forum page -->
+    <section id="forumPage" class="page">
+      <div class="forum-container">
+        <div class="forum-header">
+          <h1 class="forum-title">Forum</h1>
+          <button class="new-post-btn">New Post</button>
+        </div>
+
+        <div class="forum-tags">
+          <!-- master tags -->
+          <button class="tag tag-1" data-tag="exam">exam</button>
+          <button class="tag tag-2" data-tag="assignment">assignment</button>
+          <button class="tag tag-3" data-tag="lecture">lecture</button>
+          <button class="tag tag-4" data-tag="resources">resources</button>
+          <button class="tag tag-5" data-tag="general">general</button>
+        </div>
+
+        <div class="selected-tags-row">
+          <div class="selected-tags-left">
+            <span class="selected-title">Selected:</span>
+            <div id="selectedTagsContainer" class="selected-tags"></div>
+          </div>
+          <div class="selected-tags-right">
+            <button id="logicToggle" class="logic-btn">or</button>
+            <span class="showing-box">Showing</span>
+          </div>
+        </div>
+
+        <div class="posts">
+          <!-- example post cards -->
+          <article class="post-card">
+            <div class="post-tags-top">
+              <div class="tags-left">
+                <div class="post-tags">
+                  <span class="tag tag-1" data-tag="exam">exam</span>
+                  <span class="tag tag-4" data-tag="resources">resources</span>
+                </div>
+              </div>
+              <div class="post-replies">3 replies</div>
+            </div>
+            <h2 class="post-title">How to prepare for final exam?</h2>
+            <div class="post-meta">
+              <div class="post-date">2d ago</div>
+              <div class="post-replies">3 replies</div>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <div class="post-tags-top">
+              <div class="tags-left">
+                <div class="post-tags">
+                  <span class="tag tag-2" data-tag="assignment">assignment</span>
+                </div>
+              </div>
+              <div class="post-replies">1 reply</div>
+            </div>
+            <h2 class="post-title">Extension request process</h2>
+            <div class="post-meta">
+              <div class="post-date">5d ago</div>
+              <div class="post-replies">1 reply</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Post Detail page -->
+    <section id="postDetailPage" class="page">
+      <div class="forum-container">
+        <div class="post-card">
+          <div class="post-tags-top">
+            <div class="tags-left">
+              <div class="post-tags">
+                <span class="tag tag-1" data-tag="exam">exam</span>
+              </div>
+            </div>
+            <div class="post-replies">3 replies</div>
+          </div>
+
+          <div class="post-poster">Posted by Alice</div>
+          <div class="post-full-content">
+            <h2 class="post-title">How to prepare for final exam?</h2>
+            <p>Here's some content for the post detail view. Replies appear below.</p>
+          </div>
+        </div>
+
+        <hr class="detail-sep">
+
+        <div class="posts replies">
+          <div class="reply"><p>Reply 1 content</p></div>
+          <div class="reply"><p>Reply 2 content</p></div>
+          <div class="reply"><p>Reply 3 content</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- stub pages for other navigation targets -->
+    <section id="popularPage" class="page"><div class="forum-container"><h2>Popular</h2></div></section>
+    <section id="searchPage" class="page"><div class="forum-container"><h2>Search</h2></div></section>
+    <section id="treeholePage" class="page"><div class="forum-container"><h2>Treehole</h2></div></section>
+    <section id="profilePage" class="page"><div class="forum-container"><h2>Profile</h2></div></section>
+  </main>
+
+  <footer>© UQCourseMate</footer>
+
+  <script src="js/forum.js"></script>
+</body>
+</html>

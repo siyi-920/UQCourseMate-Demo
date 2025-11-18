@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UQCourseMate · Homepage</title>
+  <style>
+    :root { --purple:#6a00ff; --light-bg:#f4f5f7; --text:#111827; }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,system-ui,-apple-system,Roboto}
+    body{background:var(--light-bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center}
+    header{width:100%;background:var(--purple);color:#fff;padding:28px 12px;text-align:center;border-radius:0 0 18px 18px}
+    header h1{font-size:1.6rem;margin-bottom:6px}
+    main{display:flex;flex-direction:column;gap:18px;margin-top:48px;align-items:center}
+    .btn{display:block;width:260px;text-align:center;padding:14px 18px;border-radius:12px;background:#fff;border:2px solid var(--purple);color:var(--purple);text-decoration:none;font-weight:700;transition:all .18s}
+    .btn:hover{background:var(--purple);color:#fff;transform:translateY(-4px)}
+    footer{margin-top:auto;width:100%;text-align:center;padding:12px 0;color:#666;background:rgba(0,0,0,0.03)}
+    @media(max-width:600px){.btn{width:220px}}
+  </style>
+</head>
+<body>
+  <header><h1>Welcome to UQCourseMate</h1><div>Quick access to features</div></header>
+  <main>
+    <a class="btn" href="popular.html">⭐ Popular Courses</a>
+    <a class="btn" href="search.html">🔍 Search Courses</a>
+    <a class="btn" href="forum.html">💬 Student Forum</a>
+    <a class="btn" href="treehole.html">🌳 Treehole Chatroom</a>
+  </main>
+  <footer>© 2025 UQCourseMate. All rights reserved.</footer>
+</body>
+</html>

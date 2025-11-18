@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Treehole Chatroom</title>
+  <link rel="stylesheet" href="css/treehole.css" />
+</head>
+<body>
+  <main class="chatroom">
+    <header class="chatroom-header">
+      <h1>Treehole</h1>
+    </header>
+
+    <section class="chat-messages" id="chatMessages">
+      <!-- Chat bubbles will be appended here -->
+    </section>
+
+    <div class="typing-indicator hidden" id="typingIndicator">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+    <footer class="chat-input-area">
+      <textarea
+        id="messageInput"
+        placeholder="Type here..."
+        maxlength="1000"
+        rows="1"
+      ></textarea>
+      <button id="sendButton" disabled>➤</button>
+    </footer>
+  </main>
+
+  <script src="js/treehole.js"></script>
+</body>
+</html>
